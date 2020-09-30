@@ -1,0 +1,9 @@
+#!/bin/sh
+
+delim=" "
+
+getstatus() {
+	echo dateandtime
+}
+
+getstatus
