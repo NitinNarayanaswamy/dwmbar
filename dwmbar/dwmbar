@@ -1,0 +1,12 @@
+#!/bin/sh
+
+delim=" "
+
+getstatus() {
+	dateandtime
+}
+
+while :; do
+	xsetroot -name "$(getstatus)"
+	sleep 1m
+done
