@@ -1,12 +1,17 @@
 #!/bin/sh
 
+DWMBAR="$HOME/dwmbar/dwmbar"
 delim=" "
 
-getstatus() {
-	dateandtime
+source "$DWMBAR/audiocontrol"
+source "$DWMBAR/dateandtime"
+
+get_status() {
+	get_volume
+	get_dateandtime
 }
 
 while :; do
-	xsetroot -name "$(getstatus)"
+	xsetroot -name "$(get_status | tr '\n' "$delim")"
 	sleep 1m
 done
