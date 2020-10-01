@@ -3,10 +3,12 @@
 DWMBAR="$HOME/dwmbar/dwmbar"
 delim=" "
 
-source "$DWMBAR/audiocontrol"
 source "$DWMBAR/dateandtime"
+source "$DWMBAR/audiocontrol"
+source "$DWMBAR/internet"
 
 get_status() {
+	get_netoperstate
 	get_volume
 	get_dateandtime
 }

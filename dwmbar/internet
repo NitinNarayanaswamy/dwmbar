@@ -1,0 +1,8 @@
+#!/bin/sh
+
+get_netoperstate() {
+	if [[ "$(cat /sys/class/net/e*/operstate)" == "down" ]]; then
+		echo "Net down!"
+	fi
+}
+
