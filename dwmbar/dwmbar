@@ -1,12 +1,23 @@
 #!/bin/sh
 
-DWMBAR="$HOME/dwmbar/dwmbar"
+DWMBAR_PID=$$
+#DWMBAR_SLEEP_PID=
+
+reset_sleep() {
+	pkill -P $DWMBAR_PID sleep
+	echo "reset!!"
+}
+
+#trap '[[ $DWMBAR_SLEEP_PID ]] && echo "in EXIT" && kill "$DWMBAR_SLEEP_PID"' EXIT
+trap reset_sleep USR1
+
+DWMBAR_DIR="$HOME/dwmbar/dwmbar"
 delim=" "
 
 # source modules
-. "$DWMBAR/dateandtime"
-. "$DWMBAR/audiocontrol"
-. "$DWMBAR/internet"
+. "$DWMBAR_DIR/dateandtime"
+. "$DWMBAR_DIR/audiocontrol"
+. "$DWMBAR_DIR/internet"
 
 get_status() {
 	get_netoperstate
@@ -16,5 +27,8 @@ get_status() {
 
 while :; do
 	xsetroot -name "$(get_status | tr '\n' "$delim")"
-	sleep 1m
+	#sleep 1m & DWMBAR_SLEEP_PID=$!
+	sleep 1m &
+	wait $!
+	#DWMBAR_SLEEP_PID=
 done
