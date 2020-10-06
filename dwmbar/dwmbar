@@ -5,11 +5,10 @@ DWMBAR_PID=$$
 
 reset_sleep() {
 	pkill -P $DWMBAR_PID sleep
-	echo "reset!!"
 }
 
 #trap '[[ $DWMBAR_SLEEP_PID ]] && echo "in EXIT" && kill "$DWMBAR_SLEEP_PID"' EXIT
-trap reset_sleep USR1
+trap reset_sleep 10
 
 DWMBAR_DIR="$HOME/dwmbar/dwmbar"
 delim=" "
