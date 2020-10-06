@@ -1,9 +1,12 @@
 #!/bin/sh
 
 get_netoperstate() {
-	if [ "$(cat /sys/class/net/e*/operstate)" = "down" -a "$(cat /sys/class/net/w*/operstate)" = "down" ]
-	then
-		echo "Net down!"
-	fi
+	ifaces=$(ls /sys/class/net)
+	for iface in $ifaces; do
+		if [ "$(cat /sys/class/net/$iface/operstate)" = "up" ]; then
+			return
+		fi
+	done
+	echo "Net down!"
 }
 
