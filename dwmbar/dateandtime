@@ -3,3 +3,4 @@
 get_dateandtime() {
 	date "+%a %d %H:%M"
 }
+

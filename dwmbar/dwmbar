@@ -1,14 +1,15 @@
 #!/bin/sh
 
 DWMBAR_PID=$$
+readonly DWMBAR_PID
 DWMBAR_DIR="$HOME/dwmbar/dwmbar"
-delimit=" "
+DELIMIT=" "
 
 reset_sleep() {
 	pkill -P $DWMBAR_PID sleep
 }
 
-trap reset_sleep 10
+trap reset_sleep USR1
 
 # source modules
 . "$DWMBAR_DIR/dateandtime"
@@ -22,7 +23,8 @@ get_status() {
 }
 
 while :; do
-	xsetroot -name "$(get_status | tr '\n' "$delimit")"
+	xsetroot -name "$(get_status | tr '\n' "$DELIMIT")"
 	sleep 1m &
 	wait $!
 done
+

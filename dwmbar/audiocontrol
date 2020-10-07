@@ -1,12 +1,10 @@
 #!/bin/sh
 
 get_volume() {
-	if [ $(amixer get Master | tail -1 | grep -o "\[on\]") ]
-	then
-		echo "V"
+	if amixer get Master | tail -1 | grep -q "\[on\]"; then
+		echo "V $(amixer get Master | tail -1 | grep -o "[0-9]*%")"
 	else
-		echo "VM"
+		echo "VM $(amixer get Master | tail -1 | grep -o "[0-9]*%")"
 	fi
-	amixer get Master | tail -1 | grep -o "[0-9]*%"
 }
 
