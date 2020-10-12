@@ -1,12 +1,12 @@
 #!/bin/sh
 
-get_netoperstate() {
+get_internet_info() {
 	IFACES=$(ls /sys/class/net)
 	for IFACE in $IFACES; do
 		if [ "$(cat /sys/class/net/"$IFACE"/operstate)" = "up" ]; then
 			return
 		fi
 	done
-	echo "Internet down!"
+	echo "Internet down!"
 }
 

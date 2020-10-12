@@ -15,11 +15,13 @@ trap reset_sleep USR1
 . "$DWMBAR_DIR/dateandtime"
 . "$DWMBAR_DIR/audiocontrol"
 . "$DWMBAR_DIR/internet"
+. "$DWMBAR_DIR/battery"
 
 get_status() {
-	get_netoperstate
-	get_volume
-	get_dateandtime
+	get_internet_info
+	get_battery_info
+	get_volume_info
+	get_date_and_time
 }
 
 while :; do

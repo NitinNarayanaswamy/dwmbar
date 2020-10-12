@@ -1,6 +1,6 @@
 #!/bin/sh
 
-get_dateandtime() {
+get_date_and_time() {
 	date "+%a %d %H:%M"
 }
 

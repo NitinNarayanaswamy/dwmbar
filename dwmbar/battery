@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BAT="/sys/class/power_supply/BAT0"
+
+get_charge_level() {
+	cat $BAT/charge_now
+}
+
+get_battery_info() {
+	if [ -d $BAT ]; then
+		case "$(cat $BAT/status)" in
+			"Charging") echo "";;
+			"Discharging") get_charge_level;;
+			"Unknown") echo "";;
+		esac
+	fi
+}
+

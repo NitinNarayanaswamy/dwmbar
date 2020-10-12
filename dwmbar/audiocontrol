@@ -1,10 +1,10 @@
 #!/bin/sh
 
-get_volume() {
+get_volume_info() {
 	if amixer get Master | tail -1 | grep -q "\[on\]"; then
-		echo "V $(amixer get Master | tail -1 | grep -o "[0-9]*%")"
+		echo "墳$(amixer get Master | tail -1 | grep -o "[0-9]*%")"
 	else
-		echo "VM $(amixer get Master | tail -1 | grep -o "[0-9]*%")"
+		echo "婢$(amixer get Master | tail -1 | grep -o "[0-9]*%")"
 	fi
 }
 
