@@ -10,7 +10,7 @@ get_battery_info() {
 	if [ -d $BAT ]; then
 		case "$(cat $BAT/status)" in
 			"Charging") echo "";;
-			"Discharging") get_charge_level;;
+			"Discharging") echo "$(get_charge_level)%";;
 			"Unknown") echo "";;
 		esac
 	fi
